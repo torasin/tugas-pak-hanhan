@@ -32,50 +32,50 @@
         <a-marker type="pattern" url="pattern-geometric-shape-black-and-white-paulo-ribas.patt">
             <!-- Sun -->
             <a-entity
-                geometry="primitive: sphere; radius: 0.5"
+                geometry="primitive: sphere; radius: 0.3"
                 material="color: yellow"
-                scale="0.3 0.3 0.3"
+                scale="0.2 0.2 0.2"
                 position="0 0 0">
             </a-entity>
 
             <!-- Earth (smaller, closer) -->
             <a-entity
-                geometry="primitive: sphere; radius: 0.1"
+                geometry="primitive: sphere; radius: 0.05"
                 material="src: url(https://www.solarsystemscope.com/textures/download/8k_earth_daymap.jpg)"
-                position="1.5 0 0"
+                position="1 0 0"
                 rotation="0 0 0"
-                animation="property: rotation; to: 0 360 0; dur: 20000; loop: true"
-                animation__orbit="property: position; to: 1.5 0 1.5; dur: 20000; loop: true; easing: linear;">
+                animation="property: rotation; to: 0 360 0; dur: 15000; loop: true"
+                animation__orbit="property: position; to: 1 0 1; dur: 15000; loop: true; easing: linear;">
             </a-entity>
 
             <!-- Mars (smaller, closer) -->
             <a-entity
-                geometry="primitive: sphere; radius: 0.08"
+                geometry="primitive: sphere; radius: 0.04"
                 material="color: red"
-                position="2.2 0 0"
+                position="1.4 0 0"
                 rotation="0 0 0"
-                animation="property: rotation; to: 0 360 0; dur: 15000; loop: true"
-                animation__orbit="property: position; to: 2.2 0 2.2; dur: 15000; loop: true; easing: linear;">
+                animation="property: rotation; to: 0 360 0; dur: 12000; loop: true"
+                animation__orbit="property: position; to: 1.4 0 1.4; dur: 12000; loop: true; easing: linear;">
             </a-entity>
 
             <!-- Jupiter (smaller, closer) -->
             <a-entity
-                geometry="primitive: sphere; radius: 0.3"
+                geometry="primitive: sphere; radius: 0.2"
                 material="color: orange"
-                position="3.5 0 0"
+                position="2 0 0"
                 rotation="0 0 0"
-                animation="property: rotation; to: 0 360 0; dur: 25000; loop: true"
-                animation__orbit="property: position; to: 3.5 0 3.5; dur: 25000; loop: true; easing: linear;">
+                animation="property: rotation; to: 0 360 0; dur: 20000; loop: true"
+                animation__orbit="property: position; to: 2 0 2; dur: 20000; loop: true; easing: linear;">
             </a-entity>
 
             <!-- Saturn (smaller, closer) -->
             <a-entity
-                geometry="primitive: sphere; radius: 0.25"
+                geometry="primitive: sphere; radius: 0.15"
                 material="color: gold"
-                position="4.5 0 0"
+                position="2.5 0 0"
                 rotation="0 0 0"
-                animation="property: rotation; to: 0 360 0; dur: 30000; loop: true"
-                animation__orbit="property: position; to: 4.5 0 4.5; dur: 30000; loop: true; easing: linear;">
+                animation="property: rotation; to: 0 360 0; dur: 25000; loop: true"
+                animation__orbit="property: position; to: 2.5 0 2.5; dur: 25000; loop: true; easing: linear;">
             </a-entity>
 
         </a-marker>
@@ -90,3 +90,5 @@
             document.getElementById('loading').style.display = 'none';
         });
     </script>
+</body>
+</html>
