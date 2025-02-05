@@ -38,36 +38,44 @@
                 position="0 0 0">
             </a-entity>
 
-            <!-- Earth -->
+            <!-- Earth (moving) -->
             <a-entity
                 geometry="primitive: sphere; radius: 0.2"
-                material="src: url(https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Earth_illustration.png/400px-Earth_illustration.png)"
+                material="src: url(https://www.solarsystemscope.com/textures/download/8k_earth_daymap.jpg)"
                 position="2 0 0"
-                animation="property: rotation; to: 0 360 0; dur: 20000; loop: true">
+                rotation="0 0 0"
+                animation="property: rotation; to: 0 360 0; dur: 20000; loop: true"
+                animation__orbit="property: position; to: 2 0 2; dur: 20000; loop: true; easing: linear;">
             </a-entity>
 
-            <!-- Mars -->
+            <!-- Mars (moving) -->
             <a-entity
                 geometry="primitive: sphere; radius: 0.18"
                 material="color: red"
                 position="3 0 0"
-                animation="property: rotation; to: 0 360 0; dur: 15000; loop: true">
+                rotation="0 0 0"
+                animation="property: rotation; to: 0 360 0; dur: 15000; loop: true"
+                animation__orbit="property: position; to: 3 0 3; dur: 15000; loop: true; easing: linear;">
             </a-entity>
 
-            <!-- Jupiter -->
+            <!-- Jupiter (moving) -->
             <a-entity
                 geometry="primitive: sphere; radius: 0.5"
                 material="color: orange"
                 position="5 0 0"
-                animation="property: rotation; to: 0 360 0; dur: 25000; loop: true">
+                rotation="0 0 0"
+                animation="property: rotation; to: 0 360 0; dur: 25000; loop: true"
+                animation__orbit="property: position; to: 5 0 5; dur: 25000; loop: true; easing: linear;">
             </a-entity>
 
-            <!-- Saturn -->
+            <!-- Saturn (moving) -->
             <a-entity
                 geometry="primitive: sphere; radius: 0.4"
                 material="color: gold"
                 position="7 0 0"
-                animation="property: rotation; to: 0 360 0; dur: 30000; loop: true">
+                rotation="0 0 0"
+                animation="property: rotation; to: 0 360 0; dur: 30000; loop: true"
+                animation__orbit="property: position; to: 7 0 7; dur: 30000; loop: true; easing: linear;">
             </a-entity>
 
         </a-marker>
