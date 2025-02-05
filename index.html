@@ -30,12 +30,46 @@
     <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
         <!-- Marker for detection -->
         <a-marker type="pattern" url="pattern-geometric-shape-black-and-white-paulo-ribas.patt">
-            <!-- Object to appear when marker is detected -->
+            <!-- Sun -->
             <a-entity
-            gltf-model="url(https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Earth/glTF/Earth.gltf)"
-            scale="0.5 0.5 0.5"
-            animation="property: rotation; to: 0 360 0; dur: 30000; loop: true">
-        </a-entity>
+                geometry="primitive: sphere; radius: 1"
+                material="color: yellow"
+                scale="0.5 0.5 0.5"
+                position="0 0 0">
+            </a-entity>
+
+            <!-- Earth -->
+            <a-entity
+                geometry="primitive: sphere; radius: 0.2"
+                material="src: url(https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Earth_illustration.png/400px-Earth_illustration.png)"
+                position="2 0 0"
+                animation="property: rotation; to: 0 360 0; dur: 20000; loop: true">
+            </a-entity>
+
+            <!-- Mars -->
+            <a-entity
+                geometry="primitive: sphere; radius: 0.18"
+                material="color: red"
+                position="3 0 0"
+                animation="property: rotation; to: 0 360 0; dur: 15000; loop: true">
+            </a-entity>
+
+            <!-- Jupiter -->
+            <a-entity
+                geometry="primitive: sphere; radius: 0.5"
+                material="color: orange"
+                position="5 0 0"
+                animation="property: rotation; to: 0 360 0; dur: 25000; loop: true">
+            </a-entity>
+
+            <!-- Saturn -->
+            <a-entity
+                geometry="primitive: sphere; radius: 0.4"
+                material="color: gold"
+                position="7 0 0"
+                animation="property: rotation; to: 0 360 0; dur: 30000; loop: true">
+            </a-entity>
+
         </a-marker>
 
         <!-- Scene background and camera for AR -->
