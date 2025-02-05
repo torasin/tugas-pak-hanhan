@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web AR with Marker Detection</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/jeromeetienne/AR.js/aframe/build/aframe-ar.js"></script>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: black;
+        }
+
+        #loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 20px;
+            color: white;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div id="loading">Loading AR environment...</div>
+
+    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
+        <!-- Marker for detection -->
+        <a-marker type="pattern" url="pattern-hiro.patt">
+            <!-- Object to appear when marker is detected -->
+            <a-box position="0 0.5 0" material="color: red;"></a-box>
+        </a-marker>
+
+        <!-- Scene background and camera for AR -->
+        <a-entity camera></a-entity>
+    </a-scene>
+
+    <script>
+        document.querySelector('a-scene').addEventListener('loaded', function () {
+            // Hide loading message once the AR scene has fully loaded
+            document.getElementById('loading').style.display = 'none';
+        });
+    </script>
+</body>
+</html>
