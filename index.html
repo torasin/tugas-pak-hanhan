@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beating Heart AR</title>
+    <title>Beating Love Heart AR</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/jeromeetienne/AR.js/aframe/build/aframe-ar.js"></script>
     <style>
@@ -31,10 +31,11 @@
         <!-- Marker for detection -->
         <a-marker type="pattern" url="pattern-geometric-shape-black-and-white-paulo-ribas.patt">
             <!-- Heart Geometry -->
-            <a-entity
-                geometry="primitive: sphere; radius: 0.3"
-                material="color: red"
+            <a-entity 
+                geometry="primitive: torus; radius: 0.3; radiusTubular: 0.1; arc: 180"
+                material="color: red; shader: flat"
                 position="0 0 0"
+                rotation="0 0 0"
                 animation="property: scale; to: 0.35 0.35 0.35; dur: 500; dir: alternate; loop: true">
             </a-entity>
         </a-marker>
