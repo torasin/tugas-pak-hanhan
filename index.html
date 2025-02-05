@@ -35,7 +35,17 @@
                 gltf-model="earth_cartoon/scene.gltf" 
                 scale="1 1 1" 
                 position="0 0 0"
-                animation-mixer>
+                animation="property: rotation; to: 0 360 0; dur: 20000; loop: true">
+            </a-entity>
+        </a-marker>
+
+        <a-marker type="pattern" url="pattern-marvel-rivals.patt"> <!-- Replace with your second marker -->
+            <!-- 3D model for the second marker -->
+            <a-entity
+                gltf-model="2014_lamborghini_veneno_roadster/scene.gltf" 
+                scale="0.5 0.5 0.5" 
+                position="0 0 0"
+                animation="property: rotation; to: 0 360 0; dur: 20000; loop: true">
             </a-entity>
         </a-marker>
 
