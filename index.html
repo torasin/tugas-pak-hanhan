@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>tugas besar ar</title>
+    <title>Tugas Besar AR</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/jeromeetienne/AR.js/aframe/build/aframe-ar.js"></script>
     <style>
@@ -42,6 +42,18 @@
             justify-content: center;
             font-size: 16px;
             text-align: center;
+        }
+        .description-container table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .description-container th, .description-container td {
+            border: 1px solid white;
+            padding: 8px;
+            text-align: left;
+        }
+        .description-container th {
+            background-color: rgba(255, 255, 255, 0.2);
         }
         #loading {
             position: absolute;
@@ -89,7 +101,9 @@
                 <a-entity camera></a-entity>
             </a-scene>
         </div>
-        <div class="description-container" id="description">Arahkan kamera ke marker untuk melihat model.</div>
+        <div class="description-container" id="description">
+            <p>Arahkan kamera ke marker untuk melihat model.</p>
+        </div>
     </div>
 
     <script>
@@ -127,14 +141,14 @@
         };
 
         const descriptionDiv = document.getElementById('description');
-        
+
         document.querySelectorAll('a-marker').forEach(marker => {
             marker.addEventListener('markerFound', () => {
-                descriptionDiv.innerText = descriptions[marker.id];
+                descriptionDiv.innerHTML = descriptions[marker.id] || "<p>Model tidak ditemukan.</p>";
             });
-            
+
             marker.addEventListener('markerLost', () => {
-                descriptionDiv.innerText = 'Arahkan kamera ke marker untuk melihat model.';
+                descriptionDiv.innerHTML = '<p>Arahkan kamera ke marker untuk melihat model.</p>';
             });
         });
     </script>
