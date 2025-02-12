@@ -12,7 +12,6 @@
             overflow: hidden;
             background-color: black;
         }
-
         #loading {
             position: absolute;
             top: 50%;
@@ -22,15 +21,27 @@
             color: white;
             display: block;
         }
+        #description {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+            display: none;
+        }
     </style>
 </head>
 <body>
     <div id="loading">Loading AR environment...</div>
+    <div id="description"></div>
 
     <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
-
-        <a-marker type="pattern" url="pattern-geometric-shape-black-and-white-paulo-ribas.patt">
-            
+        <a-marker type="pattern" url="pattern-geometric-shape-black-and-white-paulo-ribas.patt" 
+                  id="earth-marker">
             <a-entity
                 gltf-model="earth_cartoon/scene.gltf" 
                 scale="1 1 1" 
@@ -39,7 +50,7 @@
             </a-entity>
         </a-marker>
 
-        <a-marker type="pattern" url="pattern-panda.patt"> 
+        <a-marker type="pattern" url="pattern-panda.patt" id="car-marker"> 
             <a-entity
                 gltf-model="2014_lamborghini_veneno_roadster/scene.gltf" 
                 scale="80 80 80" 
@@ -48,7 +59,7 @@
             </a-entity>
         </a-marker>
 
-        <a-marker type="pattern" url="pattern-marvel-rivals.patt"> 
+        <a-marker type="pattern" url="pattern-marvel-rivals.patt" id="venom-marker"> 
             <a-entity
                 gltf-model="she-venom_fortnite_marvel_rivals_free_sample/scene.gltf" 
                 scale="0.025 0.025 0.025" 
@@ -57,13 +68,31 @@
             </a-entity>
         </a-marker>
 
-
         <a-entity camera></a-entity>
     </a-scene>
 
     <script>
         document.querySelector('a-scene').addEventListener('loaded', function () {
             document.getElementById('loading').style.display = 'none';
+        });
+
+        const descriptions = {
+            'earth-marker': 'Model Bumi Kartun: Representasi bumi dalam bentuk animasi.',
+            'car-marker': 'Lamborghini Veneno Roadster: Salah satu supercar tercepat di dunia.',
+            'venom-marker': 'She-Venom dari Fortnite: Karakter dari Marvel Rivals.'
+        };
+
+        const descriptionDiv = document.getElementById('description');
+        
+        document.querySelectorAll('a-marker').forEach(marker => {
+            marker.addEventListener('markerFound', () => {
+                descriptionDiv.innerText = descriptions[marker.id];
+                descriptionDiv.style.display = 'block';
+            });
+            
+            marker.addEventListener('markerLost', () => {
+                descriptionDiv.style.display = 'none';
+            });
         });
     </script>
 </body>
