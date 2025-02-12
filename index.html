@@ -11,6 +11,36 @@
             margin: 0;
             overflow: hidden;
             background-color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .container {
+            display: flex;
+            width: 90%;
+            height: 90vh;
+            border: 2px solid white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .camera-container {
+            flex: 2;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: black;
+        }
+        .description-container {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
         }
         #loading {
             position: absolute;
@@ -21,55 +51,45 @@
             color: white;
             display: block;
         }
-        #description {
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 10px;
-            border-radius: 5px;
-            font-size: 16px;
-            display: none;
-        }
     </style>
 </head>
 <body>
-    <div id="loading">Loading AR environment...</div>
-    <div id="description"></div>
+    <div class="container">
+        <div class="camera-container">
+            <div id="loading">Loading AR environment...</div>
+            <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
+                <a-marker type="pattern" url="pattern-geometric-shape-black-and-white-paulo-ribas.patt" id="earth-marker">
+                    <a-entity
+                        gltf-model="earth_cartoon/scene.gltf" 
+                        scale="1 1 1" 
+                        position="0 0 0"
+                        animation="property: rotation; to: 0 360 0; dur: 20000; loop: true">
+                    </a-entity>
+                </a-marker>
 
-    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
-        <a-marker type="pattern" url="pattern-geometric-shape-black-and-white-paulo-ribas.patt" 
-                  id="earth-marker">
-            <a-entity
-                gltf-model="earth_cartoon/scene.gltf" 
-                scale="1 1 1" 
-                position="0 0 0"
-                animation="property: rotation; to: 0 360 0; dur: 20000; loop: true">
-            </a-entity>
-        </a-marker>
+                <a-marker type="pattern" url="pattern-panda.patt" id="car-marker"> 
+                    <a-entity
+                        gltf-model="2014_lamborghini_veneno_roadster/scene.gltf" 
+                        scale="80 80 80" 
+                        position="0 0 0"
+                        animation="property: rotation; to: 0 360 0; dur: 20000; loop: true">
+                    </a-entity>
+                </a-marker>
 
-        <a-marker type="pattern" url="pattern-panda.patt" id="car-marker"> 
-            <a-entity
-                gltf-model="2014_lamborghini_veneno_roadster/scene.gltf" 
-                scale="80 80 80" 
-                position="0 0 0"
-                animation="property: rotation; to: 0 360 0; dur: 20000; loop: true">
-            </a-entity>
-        </a-marker>
+                <a-marker type="pattern" url="pattern-marvel-rivals.patt" id="venom-marker"> 
+                    <a-entity
+                        gltf-model="she-venom_fortnite_marvel_rivals_free_sample/scene.gltf" 
+                        scale="0.025 0.025 0.025" 
+                        position="0 0 0"
+                        animation="property: rotation; to: 0 360 0; dur: 20000; loop: true">
+                    </a-entity>
+                </a-marker>
 
-        <a-marker type="pattern" url="pattern-marvel-rivals.patt" id="venom-marker"> 
-            <a-entity
-                gltf-model="she-venom_fortnite_marvel_rivals_free_sample/scene.gltf" 
-                scale="0.025 0.025 0.025" 
-                position="0 0 0"
-                animation="property: rotation; to: 0 360 0; dur: 20000; loop: true">
-            </a-entity>
-        </a-marker>
-
-        <a-entity camera></a-entity>
-    </a-scene>
+                <a-entity camera></a-entity>
+            </a-scene>
+        </div>
+        <div class="description-container" id="description">Arahkan kamera ke marker untuk melihat model.</div>
+    </div>
 
     <script>
         document.querySelector('a-scene').addEventListener('loaded', function () {
@@ -87,11 +107,10 @@
         document.querySelectorAll('a-marker').forEach(marker => {
             marker.addEventListener('markerFound', () => {
                 descriptionDiv.innerText = descriptions[marker.id];
-                descriptionDiv.style.display = 'block';
             });
             
             marker.addEventListener('markerLost', () => {
-                descriptionDiv.style.display = 'none';
+                descriptionDiv.innerText = 'Arahkan kamera ke marker untuk melihat model.';
             });
         });
     </script>
