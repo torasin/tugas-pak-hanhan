@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AR Model Viewer</title>
+    <title>tugas besar ar</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/jeromeetienne/AR.js/aframe/build/aframe-ar.js"></script>
     <style>
@@ -41,17 +41,6 @@
             align-items: center;
             justify-content: center;
             font-size: 16px;
-            text-align: center;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            color: white;
-        }
-        th, td {
-            border: 1px solid white;
-            padding: 10px;
-            text-align: left;
         }
         #loading {
             position: absolute;
@@ -69,10 +58,7 @@
         <div class="camera-container">
             <div id="loading">Loading AR environment...</div>
             <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
-                <a-light type="ambient" color="#888"></a-light>
-                <a-light type="directional" position="1 1 1" intensity="0.8"></a-light>
-
-                <a-marker type="pattern" url="pattern-earth.patt" id="earth-marker">
+                <a-marker type="pattern" url="pattern-geometric-shape-black-and-white-paulo-ribas.patt" id="earth-marker">
                     <a-entity
                         gltf-model="earth_cartoon/scene.gltf" 
                         scale="1 1 1" 
@@ -81,7 +67,7 @@
                     </a-entity>
                 </a-marker>
 
-                <a-marker type="pattern" url="pattern-car.patt" id="car-marker"> 
+                <a-marker type="pattern" url="pattern-panda.patt" id="car-marker"> 
                     <a-entity
                         gltf-model="2014_lamborghini_veneno_roadster/scene.gltf" 
                         scale="80 80 80" 
@@ -90,7 +76,7 @@
                     </a-entity>
                 </a-marker>
 
-                <a-marker type="pattern" url="pattern-venom.patt" id="venom-marker"> 
+                <a-marker type="pattern" url="pattern-marvel-rivals.patt" id="venom-marker"> 
                     <a-entity
                         gltf-model="she-venom_fortnite_marvel_rivals_free_sample/scene.gltf" 
                         scale="0.025 0.025 0.025" 
@@ -99,47 +85,34 @@
                     </a-entity>
                 </a-marker>
 
-                <a-marker type="pattern" url="pattern-artist.patt" id="artist-marker"> 
-                    <a-entity
-                        gltf-model="artist_model/scene.gltf" 
-                        scale="0.1 0.1 0.1" 
-                        position="0 0 0"
-                        animation="property: rotation; to: 0 360 0; dur: 20000; loop: true">
-                    </a-entity>
-                </a-marker>
-
                 <a-entity camera></a-entity>
             </a-scene>
         </div>
-        <div class="description-container">
-            <table>
-                <tr>
-                    <th>Model</th>
-                    <th>Deskripsi</th>
-                    <th>Artis</th>
-                </tr>
-                <tr>
-                    <td>Bumi Kartun</td>
-                    <td>Usia bumi sekitar 4,54 miliar tahun. Diameter 12.742 km dengan 71% permukaannya tertutup air.</td>
-                    <td>Unknown</td>
-                </tr>
-                <tr>
-                    <td>Lamborghini Veneno</td>
-                    <td>Supercar edisi terbatas dengan mesin V12 dan desain aerodinamis futuristik.</td>
-                    <td>Lamborghini</td>
-                </tr>
-                <tr>
-                    <td>She-Venom</td>
-                    <td>Versi karakter Venom dari Marvel Rivals dengan desain khas Fortnite.</td>
-                    <td>Marvel / Fortnite</td>
-                </tr>
-                <tr>
-                    <td>Artis 3D</td>
-                    <td>Representasi seorang artis terkenal dalam bentuk model 3D.</td>
-                    <td>Unknown</td>
-                </tr>
-            </table>
-        </div>
+        <div class="description-container" id="description">Arahkan kamera ke marker untuk melihat model.</div>
     </div>
+
+    <script>
+        document.querySelector('a-scene').addEventListener('loaded', function () {
+            document.getElementById('loading').style.display = 'none';
+        });
+
+        const descriptions = {
+            'earth-marker': 'Model Bumi Kartun: Representasi bumi dalam bentuk animasi.',
+            'car-marker': 'Lamborghini Veneno Roadster: Salah satu supercar tercepat di dunia.',
+            'venom-marker': 'She-Venom dari Fortnite: Karakter dari Marvel Rivals.'
+        };
+
+        const descriptionDiv = document.getElementById('description');
+        
+        document.querySelectorAll('a-marker').forEach(marker => {
+            marker.addEventListener('markerFound', () => {
+                descriptionDiv.innerText = descriptions[marker.id];
+            });
+            
+            marker.addEventListener('markerLost', () => {
+                descriptionDiv.innerText = 'Arahkan kamera ke marker untuk melihat model.';
+            });
+        });
+    </script>
 </body>
 </html>
